@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Murid - Sistem Rumah Sukan</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🏆</div>
+
+            <div>
+                <strong>Rumah Sukan</strong>
+                <small>SK Agama (MIS) Miri</small>
+            </div>
+        </div>
+
+        <nav>
+
+            <button class="nav-item"
+                    onclick="location.href='dashboard.html'">
+                🏠
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="location.href='markah.html'">
+                🏆
+                <span>Markah</span>
+            </button>
+
+            <button class="nav-item active">
+                👨‍🎓
+                <span>Murid</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="location.href='acara.html'">
+                🏃
+                <span>Acara</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="location.href='keputusan.html'">
+                📊
+                <span>Keputusan</span>
+            </button>
+
+            <button class="nav-item"
+                    onclick="location.href='tetapan.html'">
+                ⚙️
+                <span>Tetapan</span>
+            </button>
+
+        </nav>
+
+        <button
+            id="logoutButton"
+            class="logout-button">
+            🚪 Log Keluar
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>Pengurusan Murid</h1>
+
+                <p>
+                    Senarai dan pengurusan murid rumah sukan
+                </p>
+
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+
+                    <strong id="userName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- YEAR -->
+
+        <section class="year-card">
+
+            <div>
+
+                <span class="label">
+                    TAHUN AKTIF
+                </span>
+
+                <h2 id="activeYear">
+                    Memuatkan...
+                </h2>
+
+            </div>
+
+            <div class="year-icon">
+                📅
+            </div>
+
+        </section>
+
+
+        <!-- TOOLBAR -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Senarai Murid
+                    </h2>
+
+                    <p>
+                        Pengurusan murid mengikut rumah sukan
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="openStudentForm()">
+
+                    ➕ Tambah Murid
+
+                </button>
+
+            </div>
+
+
+            <div class="student-toolbar">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="🔎 Cari nama atau nombor KP..."
+                >
+
+
+                <select id="houseFilter">
+
+                    <option value="">
+                        Semua Rumah
+                    </option>
+
+                </select>
+
+
+                <select id="classFilter">
+
+                    <option value="">
+                        Semua Kelas
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div id="studentCountDisplay"
+                 class="student-count">
+
+                Memuatkan murid...
+
+            </div>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>
+                            Bil.
+                        </th>
+
+                        <th>
+                            Nama Murid
+                        </th>
+
+                        <th>
+                            No. KP
+                        </th>
+
+                        <th>
+                            Kelas
+                        </th>
+
+                        <th>
+                            Rumah Sukan
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                        <th>
+                            Tindakan
+                        </th>
+
+                    </tr>
+
+                    </thead>
+
+
+                    <tbody id="studentTableBody">
+
+                    <tr>
+
+                        <td colspan="7"
+                            class="loading">
+
+                            Memuatkan data...
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL -->
+
+<div
+    id="studentModal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2 id="modalTitle">
+                    Tambah Murid
+                </h2>
+
+                <p>
+                    Masukkan maklumat murid
+                </p>
+
+            </div>
+
+            <button
+                onclick="closeStudentForm()"
+                class="close-button">
+
+                ✕
+
+            </button>
+
+        </div>
+
+
+        <form id="studentForm">
+
+            <input
+                type="hidden"
+                id="studentId"
+            >
+
+
+            <label>
+                Nama Murid
+            </label>
+
+            <input
+                type="text"
+                id="studentName"
+                required
+                placeholder="Nama penuh murid"
+            >
+
+
+            <label>
+                No. KP
+            </label>
+
+            <input
+                type="text"
+                id="studentIC"
+                placeholder="Contoh: 140101-13-1234"
+            >
+
+
+            <label>
+                Kelas
+            </label>
+
+            <input
+                type="text"
+                id="studentClass"
+                placeholder="Contoh: 6 Ibnu Sina"
+            >
+
+
+            <label>
+                Rumah Sukan
+            </label>
+
+            <select
+                id="studentHouse"
+                required>
+
+                <option value="">
+                    Pilih Rumah Sukan
+                </option>
+
+            </select>
+
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    class="secondary-button"
+                    onclick="closeStudentForm()">
+
+                    Batal
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="primary-button">
+
+                    Simpan
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script src="js/config.js"></script>
+<script src="js/murid.js"></script>
+
+</body>
+</html>
