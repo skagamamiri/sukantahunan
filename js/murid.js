@@ -340,20 +340,11 @@ function renderStudents() {
 
 
             const ic =
-                String(
-                    student.ic ||
-                    student.ic_number ||
-                    student.no_kp ||
-                    student.ic_no ||
-                    ""
-                ).toLowerCase();
+    student.identification_no || "-";
 
 
-            const studentClass =
-                student.class_name ||
-                student.class ||
-                student.kelas ||
-                "";
+           const cls =
+    student.class_name || "-";
 
 
             const matchSearch =
