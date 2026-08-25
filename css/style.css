@@ -765,3 +765,205 @@ nav {
     }
 
 }
+
+/* =========================
+   STUDENT MODULE
+========================= */
+
+.primary-button,
+.secondary-button {
+    border: none;
+    border-radius: 10px;
+    padding: 11px 18px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.primary-button {
+    background: #2563eb;
+    color: white;
+}
+
+.primary-button:hover {
+    background: #1d4ed8;
+}
+
+.secondary-button {
+    background: #e2e8f0;
+    color: #334155;
+}
+
+.student-toolbar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.student-toolbar input,
+.student-toolbar select,
+#studentForm input,
+#studentForm select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #dbe2ea;
+    border-radius: 10px;
+    background: white;
+    outline: none;
+}
+
+.student-toolbar input:focus,
+.student-toolbar select:focus,
+#studentForm input:focus,
+#studentForm select:focus {
+    border-color: #2563eb;
+}
+
+.student-count {
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    text-align: left;
+    padding: 13px;
+    background: #f8fafc;
+    color: #475569;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+tbody td {
+    padding: 14px 13px;
+    border-top: 1px solid #eef2f7;
+    font-size: 13px;
+}
+
+tbody tr:hover {
+    background: #f8fafc;
+}
+
+.house-badge {
+    display: inline-block;
+    padding: 7px 10px;
+    background: #f8fafc;
+    border-radius: 7px;
+    font-size: 12px;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-badge.inactive {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.action-button {
+    border: none;
+    background: #eff6ff;
+    padding: 7px 9px;
+    border-radius: 7px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.action-button.danger {
+    background: #fef2f2;
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, .55);
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 999;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: min(500px, 92%);
+    background: white;
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-header p {
+    color: #64748b;
+    font-size: 13px;
+    margin: 5px 0 0;
+}
+
+.close-button {
+    border: none;
+    background: #f1f5f9;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#studentForm label {
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+@media(max-width:800px) {
+
+    .student-toolbar {
+        grid-template-columns: 1fr;
+    }
+
+}
