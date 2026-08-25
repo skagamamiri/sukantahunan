@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Sistem Rumah Sukan</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body class="login-page">
+
+<div class="login-container">
+
+    <div class="login-card">
+
+        <div class="logo">
+            🏆
+        </div>
+
+        <h1>Sistem Rumah Sukan</h1>
+
+        <p class="subtitle">
+            Sistem Pengurusan Markah Sukan Sekolah
+        </p>
+
+        <form id="loginForm">
+
+            <div class="form-group">
+
+                <label>Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Masukkan email"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Kata Laluan</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Masukkan kata laluan"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn-primary"
+            >
+                Log Masuk
+            </button>
+
+            <div
+                id="loginMessage"
+                class="message"
+            ></div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/auth.js"></script>
+
+</body>
+</html>
