@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ms">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Sistem Rumah Sukan</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">🏆</div>
+
+            <div>
+                <strong>Rumah Sukan</strong>
+                <small>SK Agama (MIS) Miri</small>
+            </div>
+        </div>
+
+
+        <nav>
+
+            <button class="nav-item active">
+                🏠
+                <span>Dashboard</span>
+            </button>
+
+            <button class="nav-item">
+                🏆
+                <span>Markah</span>
+            </button>
+
+            <button class="nav-item">
+                👨‍🎓
+                <span>Murid</span>
+            </button>
+
+            <button class="nav-item">
+                🏃
+                <span>Acara</span>
+            </button>
+
+            <button class="nav-item">
+                📊
+                <span>Keputusan</span>
+            </button>
+
+            <button class="nav-item">
+                ⚙️
+                <span>Tetapan</span>
+            </button>
+
+        </nav>
+
+
+        <button
+            id="logoutButton"
+            class="logout-button"
+        >
+            🚪 Log Keluar
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <h1>Dashboard</h1>
+
+                <p>
+                    Sistem Pengurusan Markah Rumah Sukan
+                </p>
+            </div>
+
+
+            <div class="user-area">
+
+                <div class="user-avatar">
+                    A
+                </div>
+
+                <div>
+                    <strong id="userName">
+                        Admin
+                    </strong>
+
+                    <small>
+                        Administrator
+                    </small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- YEAR -->
+
+        <section class="year-card">
+
+            <div>
+
+                <span class="label">
+                    TAHUN AKTIF
+                </span>
+
+                <h2 id="activeYear">
+                    Memuatkan...
+                </h2>
+
+            </div>
+
+            <div class="year-icon">
+                📅
+            </div>
+
+        </section>
+
+
+        <!-- STATISTICS -->
+
+        <section class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-icon blue">
+                    🏠
+                </div>
+
+                <div>
+
+                    <span>
+                        Rumah Sukan
+                    </span>
+
+                    <strong id="houseCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon green">
+                    👨‍🎓
+                </div>
+
+                <div>
+
+                    <span>
+                        Jumlah Murid
+                    </span>
+
+                    <strong id="studentCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon orange">
+                    🏃
+                </div>
+
+                <div>
+
+                    <span>
+                        Jumlah Acara
+                    </span>
+
+                    <strong id="eventCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon purple">
+                    🏆
+                </div>
+
+                <div>
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong>
+                        Aktif
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SCOREBOARD -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Kedudukan Rumah Sukan
+                    </h2>
+
+                    <p>
+                        Kedudukan terkini berdasarkan jumlah mata
+                    </p>
+
+                </div>
+
+                <span class="live">
+                    ● LIVE
+                </span>
+
+            </div>
+
+
+            <div
+                id="scoreboard"
+                class="scoreboard"
+            >
+
+                <div class="loading">
+                    Memuatkan kedudukan...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- QUICK ACTION -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+
+                    <h2>
+                        Tindakan Pantas
+                    </h2>
+
+                    <p>
+                        Pengurusan sistem
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+                <button>
+                    ➕
+                    <span>
+                        Masukkan Keputusan
+                    </span>
+                </button>
+
+                <button>
+                    👨‍🎓
+                    <span>
+                        Tambah Murid
+                    </span>
+                </button>
+
+                <button>
+                    🏃
+                    <span>
+                        Tambah Acara
+                    </span>
+                </button>
+
+                <button>
+                    ⚙️
+                    <span>
+                        Tetapan Rumah
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="config.js"></script>
+<script src="dashboard.js"></script>
+
+</body>
+</html>
