@@ -700,58 +700,170 @@ async function saveStudent(event) {
 
     event.preventDefault();
 
-
     const id =
-        document.getElementById(
-            "studentId"
-        ).value;
-
+        document.getElementById("studentId").value;
 
     const name =
-        document.getElementById(
-            "studentName"
-        ).value.trim();
+        document.getElementById("studentName")
+        .value.trim();
 
+    const identificationNo =
+        document.getElementById("studentIC")
+        .value.trim();
 
-    const ic =
-        document.getElementById(
-            "studentIC"
-        ).value.trim();
-
-
-    const cls =
-        document.getElementById(
-            "studentClass"
-        ).value.trim();
-
+    const className =
+        document.getElementById("studentClass")
+        .value.trim();
 
     const houseId =
-        document.getElementById(
-            "studentHouse"
-        ).value;
+        document.getElementById("studentHouse")
+        .value;
 
 
-    if (!name || !houseId) {
+    if (!name) {
 
-        alert(
-            "Sila masukkan nama dan rumah sukan."
-        );
+        alert("Sila masukkan nama murid.");
 
         return;
     }
 
 
-    /*
-       PENTING:
-       Bahagian INSERT/UPDATE ini
-       kita akan sesuaikan dengan
-       struktur sebenar jadual students
-       selepas kita semak column Supabase.
-    */
+    if (!houseId) {
 
-    alert(
-        "Borang murid sudah berfungsi. Struktur database students akan kita sambungkan pada langkah seterusnya."
-    );
+        alert("Sila pilih rumah sukan.");
+
+        return;
+    }
+
+
+    // ==========================
+    // EDIT MURID
+    // ==========================
+
+    if (id) {
+
+        const {
+            error
+        } = await supabaseClient
+
+            .from("students")
+
+            .update({
+
+                name: name,
+
+                identification_no:
+                    identificationNo || null,
+
+                class_name:
+                    className || null,
+
+                house_id:
+                    houseId,
+
+                updated_at:
+                    new Date().toISOString()
+
+            })
+
+            .eq("id", id);
+
+
+        if (error) {
+
+            console.error(error);
+
+            alert(
+                "Gagal mengemaskini murid:\n\n" +
+                error.message
+            );
+
+            return;
+        }
+
+
+        alert("Maklumat murid berjaya dikemaskini.");
+
+    }
+
+
+    // ==========================
+    // TAMBAH MURID
+    // ==========================
+
+    else {
+
+        const newStudent = {
+
+            id: crypto.randomUUID(),
+
+            year_id:
+                activeYear.id,
+
+            house_id:
+                houseId,
+
+            category_id:
+                null,
+
+            student_code:
+                null,
+
+            name:
+                name,
+
+            identification_no:
+                identificationNo || null,
+
+            gender:
+                null,
+
+            school_year:
+                null,
+
+            class_name:
+                className || null,
+
+            is_active:
+                true
+
+        };
+
+
+        const {
+            error
+        } = await supabaseClient
+
+            .from("students")
+
+            .insert(newStudent);
+
+
+        if (error) {
+
+            console.error(error);
+
+            alert(
+                "Gagal menambah murid:\n\n" +
+                error.message
+            );
+
+            return;
+        }
+
+
+        alert("Murid berjaya ditambah.");
+
+    }
+
+
+    closeStudentForm();
+
+
+    await loadStudents();
+
+
+    renderStudents();
 
 }
 
